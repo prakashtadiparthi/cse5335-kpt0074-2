@@ -5,8 +5,10 @@ var mongoose = require('mongoose');
 
 var assert = require('assert');
 var ObjectId = require('mongodb').ObjectID;
-var url = 'mongodb://prakash:prakash@ds113678.mlab.com:13678/heroku_hbcmd86c';
-mongoose.connect(url, function(err){
+var url = 'mongodb://localhost:27017/prakash';
+//mongoose.connect('mongodb://localhost/prakash', function(err){
+mongoose.connect('mongodb://prakash:prakash@ds113678.mlab.com:13678/heroku_hbcmd86c', function(err){
+
     if(!err){
         console.log('connected to mongoDB');
 
