@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>my page</title>
+    <style>
+
+      table{
+        border-collapse: collapse;
+        border:1px solid black;
+      }
+      td,tr{
+        border:1px solid black;
+      }
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script>
+      var i=0;
+       function getData() {
+           var interval = setInterval(doit,1000);
+           function doit() {
+               if(parseInt(i)==98){clearInterval(interval);}
+
+               i++;
+               var details="";
+               console.log(i);
+               $.get("/getData/"+i,{},function(response){
+                   var id1 = response.id;
+                   var open = response.Open;
+                   var close =  response.Close;
+                   var high = response.High;
+                   var low = response.Low;
+                   //alert(response.id);
+                   details ="<tr><td>"+id1+"</td><td>"+open+"</td><td>"+close+"</td><td>"+high+"</td><td>"+low+"</td></tr>";
+
+                   $("#tdata").html( $("#tdata").html()+details);
+
+
+
+               });
+
+           }
+
+       }
+
+
+    </script>
+    <!--<link rel='stylesheet' href='/stylesheets/style.css' />-->
+  </head>
+  <body onload="getData()">
+
+  <p>Welcome to my page</p>
+      <table style="">
+        <thead>
+        <td>id</td>
+        <td>open</td>
+        <td>close</td>
+        <td>high</td>
+        <td>low</td>
+        </thead>
+        <tbody id="tdata"></tbody>
+      </table>
+
+
+  </body>
+</html>
